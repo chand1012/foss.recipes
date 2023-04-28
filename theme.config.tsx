@@ -1,18 +1,29 @@
-import React from 'react'
-import { DocsThemeConfig } from 'nextra-theme-docs'
+import React from "react";
+import { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
-  logo: <span>My Project</span>,
+  logo: <span>FOSS.recipes</span>,
   project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
+    link: "https://github.com/chand1012/foss.recipes",
   },
-  chat: {
-    link: 'https://discord.com',
-  },
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
+  // chat: {
+  //   link: 'https://discord.com',
+  // },
+  docsRepositoryBase: "https://github.com/chand1012/foss.recipes",
   footer: {
-    text: 'Nextra Docs Template',
+    text: (
+      <span>
+        MIT {new Date().getFullYear()} ©{" "}
+        <a href="https://github.com/chand1012" target="_blank">
+          chand1012
+        </a>
+        .
+      </span>
+    ),
   },
-}
+  useNextSeoProps: () => ({
+    titleTemplate: "%s - FOSS.recipes",
+  }),
+};
 
-export default config
+export default config;
