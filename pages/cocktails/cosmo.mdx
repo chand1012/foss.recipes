@@ -1,0 +1,44 @@
+import DrinkIngredientsTable from "../../components/DrinkIngredientsTable";
+import { Steps } from "nextra-theme-docs";
+
+# Cosmo
+
+This is a deliciously sweet and fruity drink with a delightful pink color that can sneak up on you.
+
+<DrinkIngredientsTable
+  baseUnit={"parts"}
+  excludedUnits={["cups"]}
+  ingredients={[
+    { name: "Orange/Citrus Vodka", quantity: 2 },
+    { name: "Triple Sec", quantity: 1 },
+    { name: "Lime Juice", quantity: 1 },
+    {
+      name: "Cranberry Cocktail",
+      quantity: 3,
+      notes: "Normal cranberry juice is too tart.",
+    },
+    { name: "Limoncello", quantity: 0.5, notes: "Optional" },
+    {
+      name: "Agave Syrup",
+      quantity: 0.25,
+      notes: "Simple syrup or other flavored syrup also works.",
+    },
+    { name: "Citrus Peel", quantity: 2, notes: "Garnish", unit: "twists" },
+  ]}
+/>
+
+## Steps
+
+<Steps>
+
+### Fill serving glasses with ice and citrus peel.
+
+Peel about 5 inches of any citrus peel and place twist on top of ice. The peel adds a nice aroma to the drink.
+
+### Combine other ingredients in a shaker with ice.
+
+### Shake vigorously.
+
+### Strain into serving glasses.
+
+</Steps>

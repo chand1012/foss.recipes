@@ -1,0 +1,56 @@
+import DrinkIngredientsTable from "../../components/DrinkIngredientsTable";
+import { Steps } from "nextra-theme-docs";
+
+# 🍹 Rum Punch
+
+A tropical cocktail made with rum, fruit juice, and syrup or grenadine.
+
+<DrinkIngredientsTable
+  baseUnit={"parts"}
+  excludedUnits={["cups"]}
+  ingredients={[
+    {
+      name: "White Rum",
+      quantity: 1,
+    },
+    {
+      name: "Spiced Rum",
+      quantity: 1,
+      notes: "I use Captain Morgan.",
+    },
+    {
+      name: "Pineapple Juice",
+      quantity: 1,
+    },
+    {
+      name: "Orange Juice",
+      quantity: 1,
+    },
+    {
+      name: "Grenadine",
+      quantity: 0.5,
+      notes: "Other fruity syrups can be substituted.",
+    },
+    { name: "Lime Juice", quantity: 0.25, notes: "Optional." },
+    {
+      name: "Marschino Cherry",
+      quantity: 2,
+      notes: "Garnish. Optional.",
+      unit: "cherries",
+    },
+  ]}
+/>
+
+## Steps
+
+<Steps>
+
+### Combine all ingredients in a shaker over ice.
+
+### Shake well.
+
+### Strain into glass over ice.
+
+### (Optional) Garnish with cherries.
+
+</Steps>

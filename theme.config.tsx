@@ -9,7 +9,7 @@ const config: DocsThemeConfig = {
   // chat: {
   //   link: 'https://discord.com',
   // },
-  docsRepositoryBase: "https://github.com/chand1012/foss.recipes",
+  docsRepositoryBase: "https://github.com/chand1012/foss.recipes/blob/main",
   footer: {
     text: (
       <span>

@@ -1,0 +1,43 @@
+import DrinkIngredientsTable from "../../components/DrinkIngredientsTable";
+import { Steps } from "nextra-theme-docs";
+
+# 🥃 Amaretto Sour
+
+Refreshing, easy to drink cocktail. Perfect for a hot summer day.
+
+<DrinkIngredientsTable
+  baseUnit={"parts"}
+  excludedUnits={["cups"]}
+  ingredients={[
+    {
+      name: "Amaretto Liquer",
+      quantity: 2,
+    },
+    { name: "Lemon Juice", quantity: 1 },
+    {
+      name: "Fruity Syrup",
+      quantity: 1,
+      notes: "Rose's Peach Syrup is a good store bought option.",
+    },
+    {
+      name: "Marschino Cherry",
+      quantity: 2,
+      notes: "Garnish. Optional.",
+      unit: "cherries",
+    },
+  ]}
+/>
+
+## Steps
+
+<Steps>
+
+### Combine amaretto, lemon juice, and peach syrup in a shaker with ice.
+
+### Shake well.
+
+### Strain into glass over ice.
+
+### (Optional) Garnish with cherries.
+
+</Steps>

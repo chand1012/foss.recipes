@@ -1,13 +1,15 @@
 {
   "index": {
-    "title": "Welcome"
+    "title": "👋 Welcome"
   },
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
   "about": {
     "title": "About",
     "type": "page"
   },
+  "breakfast": "🧇 Breakfast",
+  "appetizers": "🍤 Appetizers",
+  "entrees": "🍛 Entrées",
+  "cocktails": "🍸 Cocktails",
   "contact": {
     "title": "Contact ↗",
     "type": "page",
