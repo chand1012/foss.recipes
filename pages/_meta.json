@@ -2,10 +2,6 @@
   "index": {
     "title": "👋 Welcome"
   },
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
   "breakfast": "🧇 Breakfast",
   "appetizers": "🍤 Appetizers",
   "entrees": "🍛 Entrées",

@@ -2,7 +2,7 @@ import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
-  logo: <span>FOSS.recipes</span>,
+  logo: <span>🍽️ FOSS.recipes</span>,
   project: {
     link: "https://github.com/chand1012/foss.recipes",
   },
@@ -24,6 +24,7 @@ const config: DocsThemeConfig = {
   useNextSeoProps: () => ({
     titleTemplate: "%s - FOSS.recipes",
   }),
+  faviconGlyph: "🍽️",
 };
 
 export default config;

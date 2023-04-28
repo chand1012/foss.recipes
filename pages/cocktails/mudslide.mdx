@@ -1,0 +1,32 @@
+import DrinkIngredientsTable from "../../components/DrinkIngredientsTable";
+import { Steps } from "nextra-theme-docs";
+
+# 🛖 Mudslide
+
+One of my favorites. Its simple, strong, and delicious. If you like chocolate, cream, and coffee, you'll love this. **Warning**: This drink is very sweet and very strong. Don't drink too many of these.
+
+<DrinkIngredientsTable
+  baseUnit="parts"
+  excludedUnits={["cups"]}
+  ingredients={[
+    { name: "Vodka", quantity: 1, notes: "Smirnoff is a great classic." },
+    {
+      name: "Coffee Liquer",
+      quantity: 1,
+      notes: "Kahlúa is the most popular and one of the most affordable.",
+    },
+    { name: "Bailey's Irish Cream", quantity: 1 },
+  ]}
+/>
+
+## Steps
+
+<Steps>
+
+### Combine ingredients over ice.
+
+### Stir.
+
+### Enjoy!
+
+</Steps>

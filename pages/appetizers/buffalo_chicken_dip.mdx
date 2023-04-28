@@ -1,3 +1,47 @@
+import FoodIngredientsTable from "../../components/FoodIngredientsTable";
+import { Steps, Callout } from "nextra-theme-docs";
+
 # Buffalo Chicken Dip
 
-### Coming Soon
+<Callout emoji="⚠️" type="warning">
+  These measurements are approximate. You will have to adjust based on the size
+  of your slow cooker as well as your personal tastes.
+</Callout>
+
+<FoodIngredientsTable
+  baseUnit="imperial"
+  ingredients={[
+    {
+      name: "Cooked Chicken Breast",
+      quantity: 1.5,
+      unit: "lbs",
+      notes: "Shredded. Rotisserie chicken is a good option for a shortcut.",
+    },
+    {
+      name: "Frank's RedHot Buffalo Wing Sauce",
+      quantity: 0.75,
+      unit: "cups",
+      notes: "More will make it spicier and thinner. Use to taste.",
+    },
+    { name: "Heavy Whipping Cream", quantity: 0.5, unit: "cups" },
+    { name: "Cream Cheese", quantity: 1, unit: "cups" },
+  ]}
+/>
+
+<Steps>
+
+### Cook the chicken
+
+Plain, grilled chicken breast is fine. No seasoning. If using a rotisserie chicken, remove the skin.
+
+### Shred the chicken
+
+A good method is to use two forks and pull the chicken apart.
+
+### Combine ingredients in a slow cooker
+
+### Cook on low until homogenous
+
+### Serve with tortilla chips
+
+</Steps>
