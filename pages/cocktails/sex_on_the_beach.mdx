@@ -1,0 +1,32 @@
+import DrinkIngredientsTable from "../../components/DrinkIngredientsTable";
+import { Steps } from "nextra-theme-docs";
+
+# 👙 Sex on the Beach
+
+Fruity drink that will get you in trouble!
+
+<DrinkIngredientsTable
+  excludedUnits={["cups"]}
+  baseUnit="oz"
+  ingredients={[
+    { name: "Vodka", quantity: 1.5 },
+    { name: "Peach Schnapps", quantity: 0.5 },
+    { name: "Cranberry Juice", quantity: 2 },
+    { name: "Orange Juice", quantity: 2 },
+    { name: "Orange", quantity: 1, unit: "slice", notes: "Garnish. Optional." },
+  ]}
+/>
+
+<Steps>
+
+### Combine ingredients in a shaker over ice
+
+### Shake well
+
+### Strain into a glass over ice
+
+### Garnish with a pineapple slice
+
+### Enjoy!
+
+</Steps>

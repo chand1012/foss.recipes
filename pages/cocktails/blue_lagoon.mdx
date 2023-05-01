@@ -1,0 +1,36 @@
+import DrinkIngredientsTable from "../../components/DrinkIngredientsTable";
+import { Steps } from "nextra-theme-docs";
+
+# 🐟 Blue Lagoon
+
+Tropical and refreshing, this drink is perfect for a hot day by the lake.
+
+<DrinkIngredientsTable
+  baseUnit="oz"
+  excludedUnits={["cups"]}
+  ingredients={[
+    { name: "Vodka", quantity: 1 },
+    { name: "Blue Curacao", quantity: 1 },
+    { name: "Lemonade", quantity: 4 },
+    {
+      name: "Orange",
+      quantity: 1,
+      unit: "slice",
+      notes: "Garnish. Optional.",
+    },
+  ]}
+/>
+
+<Steps>
+
+### Combine ingredients in a shaker over ice
+
+### Shake well
+
+### Strain into a glass over ice
+
+### Garnish with a pineapple slice
+
+### Enjoy!
+
+</Steps>
