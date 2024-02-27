@@ -1,5 +1,6 @@
 import { Tabs, Tab } from "nextra-theme-docs";
 import fracty from "fracty";
+import { roundToNearestFive } from "../utils/rounding";
 
 interface Ingredient {
   name: string;
@@ -50,9 +51,6 @@ const DrinkIngredientsTable: React.FC<DrinkIngredientsTableProps> = ({
     <Tabs items={units} defaultIndex={units.indexOf(baseUnit)}>
       {units.map((unit) => (
         <Tab key={unit}>
-          {baseUnit !== "ml" && unit === "ml" && (
-            <small>Recommended to round to nearest 5ml.</small>
-          )}
           <table className="nx-block nx-overflow-x-scroll nextra-scrollbar nx-mt-6 nx-p-0 first:nx-mt-0">
             <thead>
               <tr className="nx-m-0 nx-border-t nx-border-gray-300 nx-p-0 dark:nx-border-gray-600 even:nx-bg-gray-100 even:dark:nx-bg-gray-600/20">
@@ -100,7 +98,9 @@ const DrinkIngredientsTable: React.FC<DrinkIngredientsTableProps> = ({
                         align="center"
                       >
                         {unit !== "ml" && !customUnit && fracty(value)}
-                        {unit === "ml" && !customUnit && Math.round(value)}{" "}
+                        {unit === "ml" &&
+                          !customUnit &&
+                          roundToNearestFive(value)}{" "}
                         {customUnit ? `${quantity} ${customUnit}` : unit}
                       </td>
                       <td

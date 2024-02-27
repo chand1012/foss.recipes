@@ -1,5 +1,9 @@
 import { Tabs, Tab } from "nextra-theme-docs";
-import { roundToNearestQuarter } from "../utils/rounding";
+import {
+  roundToNearestFive,
+  roundToNearestQuarter,
+  roundToNearestTen,
+} from "../utils/rounding";
 
 type Unit = "g" | "ml" | "lbs" | "cups" | "tbsp" | "tsp";
 
@@ -80,19 +84,19 @@ const conversionMatrix = {
     tbsp: (x: number) => x / 14.787,
     tsp: (x: number) => x / 4.929,
   },
-  lbs: { g: (x: number) => Math.round(x * 453.592) },
+  lbs: { g: (x: number) => roundToNearestFive(x * 453.592) },
   cups: {
-    ml: (x: number) => Math.round(x * 236.588),
+    ml: (x: number) => roundToNearestTen(x * 236.588),
     tbsp: (x: number) => x * 16,
     tsp: (x: number) => x * 48,
   },
   tbsp: {
-    ml: (x: number) => Math.round(x * 14.787),
+    ml: (x: number) => roundToNearestTen(x * 14.787),
     cups: (x: number) => x / 16,
     tsp: (x: number) => x * 3,
   },
   tsp: {
-    ml: (x: number) => Math.round(x * 4.929),
+    ml: (x: number) => roundToNearestTen(x * 4.929),
     cups: (x: number) => x / 48,
     tbsp: (x: number) => x / 3,
   },
