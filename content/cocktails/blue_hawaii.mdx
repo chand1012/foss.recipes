@@ -1,19 +1,21 @@
 import DrinkIngredientsTable from "../../components/DrinkIngredientsTable";
-import { Steps } from "nextra-theme-docs";
+import { Steps } from "nextra/components";
 
-# 🐟 Blue Lagoon
+# 🌴 Blue Hawaii
 
-Tropical and refreshing, this drink is perfect for a hot day by the lake.
+Tropical and refreshing, this drink is perfect for a hot summer day.
 
 <DrinkIngredientsTable
   baseUnit="oz"
   excludedUnits={["cups"]}
   ingredients={[
-    { name: "Vodka", quantity: 1 },
-    { name: "Blue Curacao", quantity: 1 },
-    { name: "Lemonade", quantity: 4 },
+    { name: "Vodka", quantity: 0.75 },
+    { name: "Blue Curacao", quantity: 0.5 },
+    { name: "White Rum", quantity: 0.75 },
+    { name: "Pineapple Juice", quantity: 3 },
+    { name: "Sweet & Sour Mix", quantity: 1 },
     {
-      name: "Orange",
+      name: "Pineapple",
       quantity: 1,
       unit: "slice",
       notes: "Garnish. Optional.",

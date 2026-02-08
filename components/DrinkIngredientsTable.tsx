@@ -1,4 +1,6 @@
-import { Tabs, Tab } from "nextra-theme-docs";
+"use client";
+
+import { Tabs } from "nextra/components";
 import fracty from "fracty";
 import { roundToNearestFive } from "../utils/rounding";
 
@@ -15,7 +17,10 @@ interface DrinkIngredientsTableProps {
   excludedUnits?: string[];
 }
 
-const conversionMatrix = {
+const conversionMatrix: Record<
+  string,
+  Record<string, (x: number) => number>
+> = {
   oz: {
     parts: (x: number) => x / 1.5,
     ml: (x: number) => x * 29.5735,
@@ -50,24 +55,24 @@ const DrinkIngredientsTable: React.FC<DrinkIngredientsTableProps> = ({
   return (
     <Tabs items={units} defaultIndex={units.indexOf(baseUnit)}>
       {units.map((unit) => (
-        <Tab key={unit}>
-          <table className="nx-block nx-overflow-x-scroll nextra-scrollbar nx-mt-6 nx-p-0 first:nx-mt-0">
+        <Tabs.Tab key={unit}>
+          <table className="block overflow-x-scroll mt-6 p-0 first:mt-0">
             <thead>
-              <tr className="nx-m-0 nx-border-t nx-border-gray-300 nx-p-0 dark:nx-border-gray-600 even:nx-bg-gray-100 even:dark:nx-bg-gray-600/20">
+              <tr className="m-0 border-t border-gray-300 p-0 dark:border-gray-600 even:bg-gray-100 even:dark:bg-gray-600/20">
                 <th
-                  className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                  className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                   align="left"
                 >
                   Ingredient
                 </th>
                 <th
-                  className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                  className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                   align="center"
                 >
                   Quantity
                 </th>
                 <th
-                  className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                  className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                   align="center"
                 >
                   Notes
@@ -84,17 +89,17 @@ const DrinkIngredientsTable: React.FC<DrinkIngredientsTableProps> = ({
                     : quantity;
                   return (
                     <tr
-                      className="nx-m-0 nx-border-t nx-border-gray-300 nx-p-0 dark:nx-border-gray-600 even:nx-bg-gray-100 even:dark:nx-bg-gray-600/20"
+                      className="m-0 border-t border-gray-300 p-0 dark:border-gray-600 even:bg-gray-100 even:dark:bg-gray-600/20"
                       key={name}
                     >
                       <td
-                        className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                        className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                         align="left"
                       >
                         {name}
                       </td>
                       <td
-                        className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                        className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                         align="center"
                       >
                         {unit !== "ml" && !customUnit && fracty(value)}
@@ -104,7 +109,7 @@ const DrinkIngredientsTable: React.FC<DrinkIngredientsTableProps> = ({
                         {customUnit ? `${quantity} ${customUnit}` : unit}
                       </td>
                       <td
-                        className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                        className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                         align="center"
                       >
                         {notes}
@@ -115,7 +120,7 @@ const DrinkIngredientsTable: React.FC<DrinkIngredientsTableProps> = ({
               )}
             </tbody>
           </table>
-        </Tab>
+        </Tabs.Tab>
       ))}
     </Tabs>
   );

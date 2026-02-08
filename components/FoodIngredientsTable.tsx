@@ -1,4 +1,6 @@
-import { Tabs, Tab } from "nextra-theme-docs";
+"use client";
+
+import { Tabs } from "nextra/components";
 import {
   roundToNearestFive,
   roundToNearestQuarter,
@@ -30,6 +32,60 @@ const isImperial = (
 ): unit is "lbs" | "cups" | "tbsp" | "tsp" =>
   unit === "lbs" || unit === "cups" || unit === "tbsp" || unit === "tsp";
 
+const conversionMatrix: Record<
+  string,
+  Record<string, (x: number) => number>
+> = {
+  g: { lbs: (x: number) => roundToNearestQuarter(x / 453.592) },
+  ml: {
+    cups: (x: number) => x / 236.588,
+    tbsp: (x: number) => x / 14.787,
+    tsp: (x: number) => x / 4.929,
+  },
+  lbs: { g: (x: number) => roundToNearestFive(x * 453.592) },
+  cups: {
+    ml: (x: number) => roundToNearestTen(x * 236.588),
+    tbsp: (x: number) => x * 16,
+    tsp: (x: number) => x * 48,
+  },
+  tbsp: {
+    ml: (x: number) => roundToNearestTen(x * 14.787),
+    cups: (x: number) => x / 16,
+    tsp: (x: number) => x * 3,
+  },
+  tsp: {
+    ml: (x: number) => roundToNearestTen(x * 4.929),
+    cups: (x: number) => x / 48,
+    tbsp: (x: number) => x / 3,
+  },
+};
+
+const convertUnits = (value: number, fromUnit: Unit, toUnit: Unit): number => {
+  if (fromUnit === toUnit) return value;
+
+  const conversionFunc = conversionMatrix[fromUnit]?.[toUnit];
+  if (conversionFunc) return conversionFunc(value);
+
+  // If direct conversion is not available, convert through an intermediate unit
+  const intermediateUnit = Object.keys(conversionMatrix[fromUnit])[0] as Unit;
+  const valueInIntermediateUnit =
+    conversionMatrix[fromUnit][intermediateUnit](value);
+
+  return conversionMatrix[intermediateUnit][toUnit](valueInIntermediateUnit);
+};
+
+const getImperialVolumeUnit = (quantityInMl: number): Unit => {
+  const quantityInTsp = convertUnits(quantityInMl, "ml", "tsp");
+
+  if (quantityInTsp < 3) {
+    return "tsp";
+  } else if (quantityInTsp < 12) {
+    return "tbsp";
+  } else {
+    return "cups";
+  }
+};
+
 const convertIngredientUnits = (
   ingredients: Ingredient[],
   toMetric: boolean
@@ -59,62 +115,10 @@ const convertIngredientUnits = (
   });
 };
 
-const getImperialVolumeUnit = (quantityInMl: number): Unit => {
-  const quantityInTsp = convertUnits(quantityInMl, "ml", "tsp");
-
-  if (quantityInTsp < 3) {
-    return "tsp";
-  } else if (quantityInTsp < 12) {
-    // 12 tsp = 1/4 cup
-    return "tbsp";
-  } else {
-    return "cups";
-  }
-};
-
 interface FoodIngredientsTableProps {
   ingredients: Ingredient[];
-  baseUnit: Unit;
+  baseUnit: string;
 }
-
-const conversionMatrix = {
-  g: { lbs: (x: number) => roundToNearestQuarter(x / 453.592) },
-  ml: {
-    cups: (x: number) => x / 236.588,
-    tbsp: (x: number) => x / 14.787,
-    tsp: (x: number) => x / 4.929,
-  },
-  lbs: { g: (x: number) => roundToNearestFive(x * 453.592) },
-  cups: {
-    ml: (x: number) => roundToNearestTen(x * 236.588),
-    tbsp: (x: number) => x * 16,
-    tsp: (x: number) => x * 48,
-  },
-  tbsp: {
-    ml: (x: number) => roundToNearestTen(x * 14.787),
-    cups: (x: number) => x / 16,
-    tsp: (x: number) => x * 3,
-  },
-  tsp: {
-    ml: (x: number) => roundToNearestTen(x * 4.929),
-    cups: (x: number) => x / 48,
-    tbsp: (x: number) => x / 3,
-  },
-};
-
-const convertUnits = (value: number, fromUnit: Unit, toUnit: Unit): number => {
-  if (fromUnit === toUnit) return value;
-
-  const conversionFunc = conversionMatrix[fromUnit][toUnit];
-  if (conversionFunc) return conversionFunc(value);
-
-  // If direct conversion is not available, convert through an intermediate unit
-  const intermediateUnit = Object.keys(conversionMatrix[fromUnit])[0] as Unit;
-  const valueInIntermediateUnit =
-    conversionMatrix[fromUnit][intermediateUnit](value);
-
-  return conversionMatrix[intermediateUnit][toUnit](valueInIntermediateUnit);
-};
 
 const FoodIngredientsTable: React.FC<FoodIngredientsTableProps> = ({
   ingredients,
@@ -129,24 +133,24 @@ const FoodIngredientsTable: React.FC<FoodIngredientsTableProps> = ({
           unit === "metric"
         );
         return (
-          <Tab key={unit}>
-            <table className="nx-block nx-overflow-x-scroll nextra-scrollbar nx-mt-6 nx-p-0 first:nx-mt-0">
+          <Tabs.Tab key={unit}>
+            <table className="block overflow-x-scroll mt-6 p-0 first:mt-0">
               <thead>
-                <tr className="nx-m-0 nx-border-t nx-border-gray-300 nx-p-0 dark:nx-border-gray-600 even:nx-bg-gray-100 even:dark:nx-bg-gray-600/20">
+                <tr className="m-0 border-t border-gray-300 p-0 dark:border-gray-600 even:bg-gray-100 even:dark:bg-gray-600/20">
                   <th
-                    className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                    className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                     align="left"
                   >
                     Ingredient
                   </th>
                   <th
-                    className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                    className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                     align="center"
                   >
                     Quantity
                   </th>
                   <th
-                    className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                    className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                     align="center"
                   >
                     Notes
@@ -158,17 +162,17 @@ const FoodIngredientsTable: React.FC<FoodIngredientsTableProps> = ({
                   ({ name, quantity, notes, unit: customUnit }) => {
                     return (
                       <tr
-                        className="nx-m-0 nx-border-t nx-border-gray-300 nx-p-0 dark:nx-border-gray-600 even:nx-bg-gray-100 even:dark:nx-bg-gray-600/20"
+                        className="m-0 border-t border-gray-300 p-0 dark:border-gray-600 even:bg-gray-100 even:dark:bg-gray-600/20"
                         key={name}
                       >
                         <td
-                          className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                          className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                           align="left"
                         >
                           {name}
                         </td>
                         <td
-                          className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                          className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                           align="center"
                         >
                           {customUnit
@@ -176,7 +180,7 @@ const FoodIngredientsTable: React.FC<FoodIngredientsTableProps> = ({
                             : `${quantity} ${unit}`}
                         </td>
                         <td
-                          className="nx-m-0 nx-border nx-border-gray-300 nx-px-4 nx-py-2 nx-font-semibold dark:nx-border-gray-600"
+                          className="m-0 border border-gray-300 px-4 py-2 font-semibold dark:border-gray-600"
                           align="center"
                         >
                           {notes}
@@ -187,7 +191,7 @@ const FoodIngredientsTable: React.FC<FoodIngredientsTableProps> = ({
                 )}
               </tbody>
             </table>
-          </Tab>
+          </Tabs.Tab>
         );
       })}
     </Tabs>
