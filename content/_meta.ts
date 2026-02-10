@@ -1,0 +1,15 @@
+export default {
+  index: {
+    title: "👋 Welcome",
+  },
+  breakfast: "🧇 Breakfast",
+  appetizers: "🍤 Appetizers",
+  entrees: "🍛 Entrées",
+  desserts: "🍰 Desserts",
+  cocktails: "🍸 Cocktails",
+  contact: {
+    title: "Contact ↗",
+    type: "page",
+    href: "https://twitter.com/Chand1012Dev",
+  },
+};

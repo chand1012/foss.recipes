@@ -1,7 +1,7 @@
 {
   "name": "foss-recipes",
-  "version": "0.0.1",
-  "description": "Nextra docs template",
+  "version": "0.0.2",
+  "description": "FOSS.recipes - Free, Open, Straightforward and Simple Recipes",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,25 +9,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+    "url": "git+https://github.com/chand1012/foss.recipes.git"
   },
   "author": "Chandler Lofland <chandler@chand1012.dev>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
+    "url": "https://github.com/chand1012/foss.recipes/issues"
   },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/chand1012/foss.recipes#readme",
   "dependencies": {
     "fracty": "^1.0.11",
-    "next": "^13.0.6",
-    "nextra": "latest",
-    "nextra-theme-docs": "latest",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "remark-mdx-disable-explicit-jsx": "^0.1.0"
+    "next": "^15",
+    "nextra": "^4",
+    "nextra-theme-docs": "^4",
+    "react": "^19",
+    "react-dom": "^19"
   },
   "devDependencies": {
-    "@types/node": "18.11.10",
-    "typescript": "^4.9.3"
+    "@types/node": "^22",
+    "typescript": "^5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
   }
 }
