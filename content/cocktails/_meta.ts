@@ -9,4 +9,5 @@ export default {
   rum_punch: "Rum Punch",
   sex_on_the_beach: "Sex on the Beach",
   white_russian: "White Russian",
+  willy_wonkas_retreat: "Willy Wonka's Retreat",
 };
