@@ -1,5 +1,6 @@
 export default {
   index: { title: "🍸 Cocktails", display: "hidden" },
+  a_man_a_plan_a_canal: "A Man A Plan A Canal",
   amaretto_sour: "Amaretto Sour",
   blue_hawaii: "Blue Hawaii",
   blue_lagoon: "Blue Lagoon",
